@@ -1,0 +1,38 @@
+{
+  "name": "hng-backend02",
+  "version": "1.0.0",
+  "description": "my stage 2 project in HNG",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./dist/index.js",
+    "dev": "nodemon index.ts",
+    "build": "tsc  && cp -r ./src/models ./dist/src && cp -r ./src/views ./dist/src && cp ./src/config/config.js ./dist/src/config",
+    "migrate": "npx sequelize-cli db:migrate",
+    "undo-migrate": "npx sequelize-cli db:migrate:undo:all",
+    "seed": "npx sequelize-cli db:seed:all",
+    "undo-seed": "npx sequelize-cli db:seed:undo",
+    "undo-seedAll": "npx sequelize-cli db:seed:undo:all"
+  },
+  "author": "abdullah <abdullahayomide04@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "github:types/express",
+    "@types/joi": "^17.2.3",
+    "@types/jsonwebtoken": "^9.0.6",
+    "@types/node": "^20.14.9",
+    "@types/uuid": "^10.0.0",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "joi": "^17.13.3",
+    "jsonwebtoken": "^9.0.2",
+    "nodemon": "^3.1.4",
+    "sequelize": "^6.37.3",
+    "sequelize-cli": "^6.6.2",
+    "ts-node": "^10.9.2",
+    "tsc-node": "^0.0.3",
+    "typescript": "^5.5.3"
+  }
+}
