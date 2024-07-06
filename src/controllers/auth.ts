@@ -9,11 +9,11 @@ import jwt from 'jsonwebtoken'
 const registerUser = async(req:Request, res:Response, next:NextFunction)=>{
     const {firstName, lastName, email,password, phone}= req.body;
     try {
-        
+      
         const checkIfUserExist = await models.User.findOne({
-           email
+           where:{email}
         })
-     console.log(checkIfUserExist)
+   
         if(checkIfUserExist)throw new Error(messages.userExists)
  
 
@@ -37,6 +37,7 @@ const registerUser = async(req:Request, res:Response, next:NextFunction)=>{
           delete user.dataValues.id
           delete user.dataValues.createdAt
           delete user.dataValues.updatedAt
+          delete user.dataValues.password
         return response(res, 201, messages.accoutCreated, {accessToken:token, user})
     } catch (error:any) {
         return response(res, 400, error.message);
@@ -77,9 +78,10 @@ const logIn = async (req: Request, res: Response) => {
           expiresIn: "24h",
         }
       );
-            delete user.dataValues.id
+          delete user.dataValues.id
           delete user.dataValues.createdAt
           delete user.dataValues.updatedAt
+          delete user.dataValues.password
       res.set("Authorization", `Bearer ${token}`);
       return response(res, 200, messages.loginSuccess, {
         accessToken: token,

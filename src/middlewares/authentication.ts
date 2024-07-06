@@ -14,7 +14,7 @@ const authentication = async (
   try {
     if (!userEmail) throw new Error(messages.unauthorisedAccess);
 
-    const userData = await models.Users.findOne({
+    const userData = await models.User.findOne({
       where: { email: userEmail },
     });
     if (!userData) throw new Error(messages.unauthorisedAccess);

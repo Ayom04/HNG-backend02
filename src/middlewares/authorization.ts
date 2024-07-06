@@ -8,7 +8,7 @@ import response from "../utils/response";
 
 const Authorization = (req: Request, res: Response, next: NextFunction) => {
   const authorization: string = req.headers.authorization || "";
-
+console.log(authorization)
   try {
     if (!authorization) throw new Error(messages.unauthorisedAccess);
 
@@ -18,6 +18,7 @@ const Authorization = (req: Request, res: Response, next: NextFunction) => {
       tokenSplit[1],
       process.env.JWT_SECRET,
       (err: any, decoded: { email: string }) => {
+        console.log(err)
         if (err) throw new Error(messages.unauthorisedAccess);
 
         req.params.userEmail = decoded.email;

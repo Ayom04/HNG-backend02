@@ -13,10 +13,11 @@ try {
     delete user.dataValues.id
     delete user.dataValues.createdAt
     delete user.dataValues.updatedAt
+    delete user.dataValues.password
     return response(res, 200, messages.userFetched, user);
-} catch (error:any) {
-    return response(res, 500,error.messag|| messages.serverError)
-}
+    } catch (error:any) {
+        return response(res, 500,error.messag|| messages.serverError)
+    }
 }
 
 export {

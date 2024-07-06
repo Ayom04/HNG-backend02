@@ -7,6 +7,7 @@ import cors from "cors"
 const app: Express = express();
 import authRoute from "./src/routes/auth"
 import userRoute from "./src/routes/user"
+import organisationRoute from "./src/routes/organisation"
 const PORT = process.env.PORT || 3000;
 
 app.use(cors());
@@ -23,10 +24,12 @@ app.listen(PORT, () => {
 
 app.use('/auth', authRoute)
 app.use("/api", userRoute);
+app.use("/api/organisations", organisationRoute);
 
 app.use((req,res)=>{
     response(res, 404, messages.invalidRoute);
 })
+
 app.use((err:Error, req: Request, res: Response,next: NextFunction)=>{
   if (process.env.NODE_ENV != "production"){
     console.log(err)
