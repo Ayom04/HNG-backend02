@@ -8,6 +8,7 @@ const app: Express = express();
 import authRoute from "./src/routes/auth"
 import userRoute from "./src/routes/user"
 import organisationRoute from "./src/routes/organisation"
+
 const PORT = process.env.PORT || 3000;
 
 app.use(cors());
