@@ -6,6 +6,7 @@ import cors from "cors"
 
 const app: Express = express();
 import authRoute from "./src/routes/auth"
+import userRoute from "./src/routes/user"
 const PORT = process.env.PORT || 3000;
 
 app.use(cors());
@@ -21,6 +22,7 @@ app.listen(PORT, () => {
 });
 
 app.use('/auth', authRoute)
+app.use("/api", userRoute);
 
 app.use((req,res)=>{
     response(res, 404, messages.invalidRoute);
