@@ -5,7 +5,7 @@ import response from "./src/utils/response";
 import cors from "cors"
 
 const app: Express = express();
-import authRoute from "./src/routes/user"
+import authRoute from "./src/routes/auth"
 const PORT = process.env.PORT || 3000;
 
 app.use(cors());
