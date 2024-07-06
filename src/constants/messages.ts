@@ -5,10 +5,10 @@ const messages = {
   unauthorisedAccess: "Unauthorised Access.....",
   unauthorizedPermission:
     "you don't have the permission to carry out this operation",
-  accoutCreated: "Accout Created Successfully",
+  accoutCreated: "Registration successful",
   invalidCredentials: "Invalid Credentials",
-  loginSuccess: "Login Success",
-  userExists: "User with the email/username already exists",
+  loginSuccess: "Login Successful",
+  userExists: "User with the email already exists",
   notFound: "not found",
   userNotFound: "User not found",
   walletFetched: "wallet balance fetched successfully",
