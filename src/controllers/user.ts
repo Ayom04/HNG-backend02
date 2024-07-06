@@ -11,20 +11,17 @@ const registerUser = async(req:Request, res:Response, next:NextFunction)=>{
     try {
         
         const checkIfUserExist = await models.User.findOne({
-            [models.Sequelize.Op.or]: [{ email}],
+           email
         })
-     
-        if(checkIfUserExist){
-            const err = new Error(messages.userExists)
-             err.status = 400
-            next(err)
-        }
+     console.log(checkIfUserExist)
+        if(checkIfUserExist)throw new Error(messages.userExists)
+ 
 
-        const hashedPassword = await hashPassword(password);
+        const { salt, hash } = await hashPassword(password);
         
      const user =   await models.User.create({
             userId:uuidv4(),
-            firstName, lastName, email,password: hashedPassword, phone
+            firstName, lastName, email,password: hash, phone,
         })
         const token = jwt.sign(
             {
@@ -37,9 +34,12 @@ const registerUser = async(req:Request, res:Response, next:NextFunction)=>{
             }
           );
           res.set("Authorization", `Bearer ${token}`);
+          delete user.dataValues.id
+          delete user.dataValues.createdAt
+          delete user.dataValues.updatedAt
         return response(res, 201, messages.accoutCreated, {accessToken:token, user})
     } catch (error:any) {
-        next(error)
+        return response(res, 400, error.message);
     }
 
 
@@ -51,7 +51,7 @@ const logIn = async (req: Request, res: Response) => {
   
     try {
   
-      const user = await models.Users.findOne({
+      const user = await models.User.findOne({
         where: {
           email,
         },
@@ -77,6 +77,9 @@ const logIn = async (req: Request, res: Response) => {
           expiresIn: "24h",
         }
       );
+            delete user.dataValues.id
+          delete user.dataValues.createdAt
+          delete user.dataValues.updatedAt
       res.set("Authorization", `Bearer ${token}`);
       return response(res, 200, messages.loginSuccess, {
         accessToken: token,
@@ -87,4 +90,4 @@ const logIn = async (req: Request, res: Response) => {
     }
 };
 
-export {registerUser, }
+export {registerUser, logIn}

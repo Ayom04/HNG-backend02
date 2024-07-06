@@ -1,23 +1,20 @@
-import { NextFunction,Response,Request } from "express";
+import { NextFunction, Request, Response } from "express";
+import Joi from "joi";
 
-const Joi = require('joi');
+import response from "../utils/response";
+const messages = require("../constants/messages");
 
-const validationMiddleware = (schema: { validate: (arg0: any) => { error: any; }; }) => {
-  return (req:Request, res: Response, next:NextFunction) => {
-    const { error } = schema.validate(req.body);
-    const valid = error == null;
-
-    if (valid) {
-      next();
-    } else {
-      const { details } = error;
-      const message = details.map((i: { message: any; }) => i.message).join(',');
-      const err = new Error(message);
-
-      err.status = 422;
-      return next(err);
+const validationMiddleware = (schema: Joi.ObjectSchema) => {
+  return (req: Request, res: Response, next: NextFunction) => {
+    const { error } = schema.validate(req.body, { abortEarly: false });
+    if (!error) {
+      return next();
     }
+
+    const message = error.details.map((i: Joi.ValidationErrorItem) => i.message).join(', ');
+
+    response(res, 422, message || messages.validationError);
   };
 };
 
-export default  validationMiddleware;
+export default validationMiddleware;
