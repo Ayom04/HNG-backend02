@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node ./dist/index.js",
     "dev": "nodemon index.ts",
-    "build": "tsc  && cp -r ./src/models ./dist/src && cp -r ./src/views ./dist/src && cp ./src/config/config.js ./dist/src/config",
+    "build": "tsc  && cp -r ./src/models ./dist/src  && cp ./src/config/config.js ./dist/src/config",
     "migrate": "npx sequelize-cli db:migrate",
     "undo-migrate": "npx sequelize-cli db:migrate:undo:all",
     "seed": "npx sequelize-cli db:seed:all",

@@ -15,11 +15,18 @@ module.exports ={
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
-  "production": {
-    "username": "root",
-    "password": null,
-    "database": "database_production",
-    "host": "127.0.0.1",
-    "dialect": "postgres"
-  }
+production: {
+    username: process.env.PROD_DB_USERNAME || "root",
+    password: process.env.PROD_DB_PASSWORD || "",
+    database: process.env.PROD_DB_NAME || "database_production",
+    host: process.env.PROD_DB_HOST , 
+    port: process.env.PROD_DB_PORT,
+  dialect: "postgres",
+  dialectOptions: {
+      ssl: {
+        require: true,
+        rejectUnauthorized: false,
+      },
+    },
+  },
 }
