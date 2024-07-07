@@ -23,7 +23,17 @@ const registerUser = async(req:Request, res:Response, next:NextFunction)=>{
             userId:uuidv4(),
             firstName, lastName, email,password: hash, phone,
         })
-    
+
+      const organisation = await models.Organisation.create({
+        orgId: uuidv4(),
+        name: `${firstName}'s Organisation`
+      })
+
+      await models.UserOrganisation.create({
+        userId: user.dataValues.userId,
+        orgId: organisation.dataValues.orgId
+      });
+      
         const token = jwt.sign(
             {
               email: user.dataValues.email,

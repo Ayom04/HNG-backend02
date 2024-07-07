@@ -6,7 +6,7 @@ import Authorization from "../middlewares/authorization";
 import validationMiddleware from "../middlewares/validation";
 import {createOrganisation,getAnOrganisation, getUserOrganisation} from "../controllers/organisation"
 
-router.get('',Authorization, authentication)
+router.get('',Authorization, authentication,getUserOrganisation)
 router.post('',Authorization, authentication, createOrganisation)
 router.get('/:orgId',Authorization, authentication,getAnOrganisation )
 
