@@ -19,14 +19,14 @@ module.exports = {
          userId: {
            type: Sequelize.UUID,
            references: {
-             model: "User",
+             model: "Users",
              key: "userId",
            },
          },
          orgId: {
            type: Sequelize.UUID,
            references: {
-             model: "Organisation",
+             model: "Organisations",
              key: "orgId",
            },
            createdAt: {

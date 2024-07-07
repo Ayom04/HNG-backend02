@@ -23,6 +23,7 @@ const registerUser = async(req:Request, res:Response, next:NextFunction)=>{
             userId:uuidv4(),
             firstName, lastName, email,password: hash, phone,
         })
+    
         const token = jwt.sign(
             {
               email: user.dataValues.email,
