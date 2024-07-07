@@ -11,13 +11,11 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-     
     }
   }
   UserOrganisation.init({
-    userId: DataTypes.UUID,
-    orgId: DataTypes.UUID,
-
+  orgId:DataTypes.UUID,
+  userId: DataTypes.UUID
   }, {
     sequelize,
     modelName: 'UserOrganisation',

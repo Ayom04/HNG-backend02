@@ -51,6 +51,7 @@ const registerUser = async(req:Request, res:Response, next:NextFunction)=>{
           delete user.dataValues.password
         return response(res, 201, messages.accoutCreated, {accessToken:token, user})
     } catch (error:any) {
+      console.log(error)
         return response(res, 400, error.message);
     }
 

@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      models.Organisation.belongsToMany(models.User, { through: models.UserOrganisation });
     }
   }
   Organisation.init({
