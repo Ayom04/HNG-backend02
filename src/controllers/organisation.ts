@@ -37,10 +37,14 @@ const getUserOrganisation = async( req:Request,res:Response)=>{
 const getAnOrganisation = async( req:Request,res:Response)=>{
 	const {orgId,userId}= req.params
 	try{
+		
 	const organisation = await models.Organisation.findOne({
 		where:{orgId}
 	})
-		if(!organisation)throw new Error(messages.notFound)
+
+	if(!organisation)throw new Error(messages.notFound)
+
+	return response(res, 200, "organisation fetched successfully")
 	}catch(error:any ){
 		return response(res, 500,error.message|| messages.serverError)
 	}
