@@ -9,35 +9,36 @@ module.exports = {
      * Example:
    
      */
-       await queryInterface.createTable('users', { 
-        id: {
-          allowNull: false,
-          autoIncrement: true,
-          unique: true,
-          type: Sequelize.INTEGER,
-        }, 
-        userId: {
-          type: DataTypes.UUID,
-          references: {
-            model: 'User',
-            key: 'userId',
-          },
-        },
-        orgId: {
-          type: DataTypes.UUID,
-          references: {
-            model: 'Organisation',
-            key: 'orgId',
-        },
-        createdAt: {
-            allowNull: false,
-            type: Sequelize.DATE
-        },
-        updatedAt: {
-            allowNull: false,
-            type: Sequelize.DATE
-        }}
-    });
+       await queryInterface.createTable("users", {
+         id: {
+           allowNull: false,
+           autoIncrement: true,
+           unique: true,
+           type: Sequelize.INTEGER,
+         },
+         userId: {
+           type: Sequelize.UUID,
+           references: {
+             model: "User",
+             key: "userId",
+           },
+         },
+         orgId: {
+           type: Sequelize.UUID,
+           references: {
+             model: "Organisation",
+             key: "orgId",
+           },
+           createdAt: {
+             allowNull: false,
+             type: Sequelize.DATE,
+           },
+           updatedAt: {
+             allowNull: false,
+             type: Sequelize.DATE,
+           },
+         },
+       });
     
   },
 
