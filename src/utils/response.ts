@@ -67,11 +67,17 @@ type HttpStatusCode =
   | 511;
 
 const response = (
-{  res: Response,
-  code: HttpStatusCode,
-  message: string,
+{  res,
+  code,
+  message,
+  status_text,
+  data}:{
+res:Response,
+  code:HttpStatusCode,
+  message:string,
   status_text?:string,
-  data?: any}
+  data?:any,
+  }
 ) => {
   if (!res) throw new Error("Response not defined");
 
@@ -145,7 +151,7 @@ const response = (
 
   res.status(code).send({
     code: code,
-    status: status_text: statusText,
+    status: status_text || statusText,
     message: message || messages.serverError,
     data: data || {},
   });

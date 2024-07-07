@@ -11,7 +11,8 @@
     "undo-migrate": "npx sequelize-cli db:migrate:undo:all",
     "seed": "npx sequelize-cli db:seed:all",
     "undo-seed": "npx sequelize-cli db:seed:undo",
-    "undo-seedAll": "npx sequelize-cli db:seed:undo:all"
+    "undo-seedAll": "npx sequelize-cli db:seed:undo:all",
+    "test": "exit 1"
   },
   "author": "abdullah <abdullahayomide04@gmail.com>",
   "license": "MIT",
@@ -43,6 +44,8 @@
     "typescript": "^5.5.3"
   },
   "devDependencies": {
-    "@types/bcryptjs": "^2.4.6"
+    "@types/bcryptjs": "^2.4.6",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.5"
   }
 }

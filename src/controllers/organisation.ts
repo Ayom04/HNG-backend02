@@ -24,9 +24,9 @@ const createOrganisation = async( req:Request,res:Response)=>{
         OrganisationId:organisation.dataValues.orgId,
    })
 
-    return response(res, 201, messages.organisationCreated)
+    return response({res, code:201,message: messages.organisationCreated})
 	}catch(error:any){
-		 return response(res, 500,error.message|| messages.serverError)
+		 return response({res, code:500,message: error.message|| messages.serverError})
 	}
 }
 
@@ -44,16 +44,16 @@ const getUserOrganisation = async( req:Request,res:Response)=>{
 			  }],
 		});
 
-	console.log(organisations)
-
-		res.status(200).json({
-         status: "success",
-         message: "Organisations retrieved successfully",
-         data: organisations,
-       });
+	   return response({
+		res,
+		code:200,
+        message: "Organization retrieved successfully",
+		status_text:"success",
+        data: organisations,
+       })
 	}catch(error:any){
 		console.log(error)
- 		return response(res, 500,error.message|| messages.serverError)
+ 		return response({res, code:500, message:error.message|| messages.serverError})
 	}
 }
 
@@ -72,9 +72,9 @@ const getAnOrganisation = async( req:Request,res:Response)=>{
 
 	if(!organisation)throw new Error(messages.notFound)
 
-	return response(res, 200, "organisation fetched successfully", organisation);
+	return response({res, code:200, message:"organisation fetched successfully",status_text:"succes", data:organisation});
 	}catch(error:any ){
-		return response(res, 500,error.message|| messages.serverError)
+		return response({res, code:500,message :error.message|| messages.serverError})
 	}
 }
 
@@ -102,10 +102,10 @@ const addUserToAnOrganisation = async(req:Request,res:Response)=>{
       where: { UserId: userId, OrganisationId: orgId },
     });
 
-	return response(res,200,'User added to organisation successfully'  )
+	return response({res,code:200,message:'User added to organisation successfully',status_text:"success" } )
       
   }catch(error:any){
-  		return response(res, 500,error.message|| messages.serverError)
+  		return response({res, code: 500,message: error.message|| messages.serverError})
   }
 }
 export {

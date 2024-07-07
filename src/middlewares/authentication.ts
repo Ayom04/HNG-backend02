@@ -23,7 +23,7 @@ const authentication = async (
 
     next();
   } catch (error: any) {
-    response(res, 401, error.message || messages.serverError);
+    response({res, code:401, message:error.message || messages.serverError});
   }
 };
 

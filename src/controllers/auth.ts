@@ -49,10 +49,20 @@ const registerUser = async(req:Request, res:Response, next:NextFunction)=>{
           delete user.dataValues.createdAt
           delete user.dataValues.updatedAt
           delete user.dataValues.password
-        return response(res, 201, messages.accoutCreated, {accessToken:token, user})
+        return response({
+          res,
+          code: 201,
+          message: "Registration successful",
+          status_text: "succes",
+          data: { accessToken: token, user },
+        });
     } catch (error:any) {
       console.log(error)
-        return response(res, 400, error.message);
+        return response({
+          res,
+          code: 400,
+          message: error.message || "Registration unsuccessful",
+        });
     }
 
 
@@ -95,12 +105,16 @@ const logIn = async (req: Request, res: Response) => {
           delete user.dataValues.updatedAt
           delete user.dataValues.password
       res.set("Authorization", `Bearer ${token}`);
-      return response(res, 200, messages.loginSuccess, {
+      return response({res, code: 200, message:messages.loginSuccess,status_text:"success", data:{
         accessToken: token,
         user
-      });
+      }});
     } catch (error: any) {
-      return response(res, 400, error.message);
+      return response({
+        res,
+        code: 400,
+        message: error.message || "Authentication failed",
+      });
     }
 };
 

@@ -14,9 +14,9 @@ try {
     delete user.dataValues.createdAt
     delete user.dataValues.updatedAt
     delete user.dataValues.password
-    return response(res, 200, messages.userFetched, user);
+    return response({res, code:200, message: messages.userFetched,status_text:"success", data: user});
     } catch (error:any) {
-        return response(res, 500,error.messag|| messages.serverError)
+        return response({res, code:500,message:error.message|| messages.serverError})
     }
 }
 

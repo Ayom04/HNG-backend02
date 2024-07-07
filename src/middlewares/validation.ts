@@ -13,7 +13,7 @@ const validationMiddleware = (schema: Joi.ObjectSchema) => {
 
     const message = error.details.map((i: Joi.ValidationErrorItem) => i.message).join(', ');
 
-    response(res, 422, message || messages.validationError);
+    response({res, code:422, message:message || messages.validationError});
   };
 };
 

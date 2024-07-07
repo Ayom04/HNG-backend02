@@ -1,6 +1,6 @@
 const saltRounds = 10;
 import bcrypt from "bcryptjs";
-
+import jwt from "jsonwebtoken";
 const hashPassword = async (
     password: string
   ): Promise<{ salt: string; hash: string }> => {
@@ -26,5 +26,9 @@ const hashPassword = async (
       }
     });
   };
-  
+  const generateAccessToken = (email: string): string => {
+    return jwt.sign({ email }, process.env.JWT_SECRET ||"secret123", {
+      expiresIn: process.env.JWT_EXPIRES_IN||"1d",
+    });
+  };
   export { hashPassword, comparePassword };

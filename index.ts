@@ -16,7 +16,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.get("/", (req: Request, res: Response) => {
-  return response(res, 200, messages.welcomeMessage);
+  return response({res, code:200, message:messages.welcomeMessage});
 });
 
 app.listen(PORT, () => {
@@ -28,7 +28,7 @@ app.use("/api", userRoute);
 app.use("/api/organisations", organisationRoute);
 
 app.use((req,res)=>{
-    response(res, 404, messages.invalidRoute);
+    response({res, code: 404, message: messages.invalidRoute});
 })
 
 app.use((err:Error, req: Request, res: Response,next: NextFunction)=>{
@@ -36,8 +36,9 @@ app.use((err:Error, req: Request, res: Response,next: NextFunction)=>{
     console.log(err)
   }
   return response(
-    res,
-    500,
-    `Something went wrong, please try again later!n`
+   { res,
+   code: 500,
+    message:`Something went wrong, please try again later!n`}
   );
 })
+export default app
