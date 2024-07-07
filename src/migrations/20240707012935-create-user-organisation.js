@@ -9,14 +9,14 @@ module.exports = {
            unique: true,
            type: Sequelize.INTEGER,
          },
-         userId: {
+         UserId: {
            type: Sequelize.UUID,
            references: {
              model: "Users",
              key: "userId",
            },
          },
-         orgId: {
+         OrganisationId: {
            type: Sequelize.UUID,
            references: {
              model: "Organisations",

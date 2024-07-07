@@ -11,14 +11,19 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      models.UserOrganisation.belongsTo(models.Organisation, {
+        foreignKey: 'OrganisationId',
+        targetKey: 'orgId', // Assuming 'orgId' is the primary key of Organisation
+      });
     }
   }
   UserOrganisation.init({
-  orgId:DataTypes.UUID,
-  userId: DataTypes.UUID
+    OrganisationId:DataTypes.UUID,
+    UserId: DataTypes.UUID
   }, {
     sequelize,
     modelName: 'UserOrganisation',
+    timestamps:false
   });
   return UserOrganisation;
 };

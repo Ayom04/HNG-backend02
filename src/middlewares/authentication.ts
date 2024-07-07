@@ -19,7 +19,7 @@ const authentication = async (
     });
     if (!userData) throw new Error(messages.unauthorisedAccess);
 
-    req.params.userId = userData.user_userIdid;
+    req.params.userId = userData.userId;
 
     next();
   } catch (error: any) {

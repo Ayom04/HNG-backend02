@@ -30,8 +30,8 @@ const registerUser = async(req:Request, res:Response, next:NextFunction)=>{
       })
 
       await models.UserOrganisation.create({
-        userId: user.dataValues.userId,
-        orgId: organisation.dataValues.orgId
+        UserId: user.dataValues.userId,
+        OrganisationId: organisation.dataValues.orgId
       });
       
         const token = jwt.sign(

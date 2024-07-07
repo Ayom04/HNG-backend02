@@ -1,0 +1,16 @@
+import { expect } from 'chai';
+import { generateAccessToken } from '../utils/auth'; // Example function for token generation
+
+describe('Token Generation', () => {
+  it('should generate token with correct expiry', () => {
+    const userId = '123456';
+    const token = generateAccessToken(userId);
+
+    // Example assertion for token expiry
+    const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
+    expect(decodedToken.exp).to.exist;
+    // Add more assertions for token expiry time
+  });
+
+  // Add more unit tests for other authentication-related functions
+});
