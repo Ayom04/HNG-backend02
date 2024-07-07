@@ -11,6 +11,7 @@ const messages = {
   userExists: "User with the email already exists",
   notFound: "not found",
   userNotFound: "User not found",
- userFetched:"user details fetched successfully"
+ userFetched:"user details fetched successfully",
+ organisationCreated: 'Organisation created successfully'
 };
 export default messages;
