@@ -26,7 +26,7 @@ const createOrganisation = async( req:Request,res:Response)=>{
 
     return response({res, code:201,message: messages.organisationCreated})
 	}catch(error:any){
-		 return response({res, code:500,message: error.message|| messages.serverError})
+		 return response({res, code:400,message:  "Client error" || error.message })
 	}
 }
 
@@ -53,7 +53,7 @@ const getUserOrganisation = async( req:Request,res:Response)=>{
        })
 	}catch(error:any){
 		console.log(error)
- 		return response({res, code:500, message:error.message|| messages.serverError})
+ 		return response({res, code:400, message:error.message|| messages.serverError})
 	}
 }
 
@@ -74,7 +74,7 @@ const getAnOrganisation = async( req:Request,res:Response)=>{
 
 	return response({res, code:200, message:"organisation fetched successfully",status_text:"succes", data:organisation});
 	}catch(error:any ){
-		return response({res, code:500,message :error.message|| messages.serverError})
+		return response({res, code:400,message :error.message|| messages.serverError})
 	}
 }
 
@@ -105,7 +105,7 @@ const addUserToAnOrganisation = async(req:Request,res:Response)=>{
 	return response({res,code:200,message:'User added to organisation successfully',status_text:"success" } )
       
   }catch(error:any){
-  		return response({res, code: 500,message: error.message|| messages.serverError})
+  		return response({res, code: 400,message: error.message|| messages.serverError})
   }
 }
 export {

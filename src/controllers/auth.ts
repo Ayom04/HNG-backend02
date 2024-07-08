@@ -112,8 +112,9 @@ const logIn = async (req: Request, res: Response) => {
     } catch (error: any) {
       return response({
         res,
-        code: 400,
-        message: error.message || "Authentication failed",
+        code: 401,
+        message: "Authentication failed" || error.message ,
+        status_text: "Bad request"
       });
     }
 };
