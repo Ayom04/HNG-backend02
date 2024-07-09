@@ -43,13 +43,18 @@ const getUserOrganisation = async( req:Request,res:Response)=>{
 			    required: true, // Ensure it's a required join to get only matching organisations
 			  }],
 		});
+	const updatedData = organisations.map((item :any)=> ({
+    orgId: item.OrganisationId,
+    UserId: item.UserId,
+    Organisation: item.Organisation
+}));
 
 	   return response({
 		res,
 		code:200,
         message: "Organization retrieved successfully",
 		status_text:"success",
-        data: organisations,
+        data: updatedData,
        })
 	}catch(error:any){
 		console.log(error)
@@ -69,10 +74,15 @@ const getAnOrganisation = async( req:Request,res:Response)=>{
 			    required: true, // Ensure it's a required join to get only matching organisations
 			  }],
 		});
+			const updatedData = organisation.map((item :any)=> ({
+    orgId: item.OrganisationId,
+    UserId: item.UserId,
+    Organisation: item.Organisation
+}));
 
 	if(!organisation)throw new Error(messages.notFound)
 
-	return response({res, code:200, message:"organisation fetched successfully",status_text:"succes", data:organisation});
+	return response({res, code:200, message:"organisation fetched successfully",status_text:"success", data:updatedData});
 	}catch(error:any ){
 		return response({res, code:400,message :error.message|| messages.serverError})
 	}

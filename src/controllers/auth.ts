@@ -53,7 +53,7 @@ const registerUser = async(req:Request, res:Response, next:NextFunction)=>{
           res,
           code: 201,
           message: "Registration successful",
-          status_text: "succes",
+          status_text: "success",
           data: { accessToken: token, user },
         });
     } catch (error:any) {
