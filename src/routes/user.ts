@@ -7,6 +7,6 @@ import Authorization from "../middlewares/authorization";
 
 import validationMiddleware from "../middlewares/validation";
 
-router.get("/users", Authorization, authentication, getUserDetails);
+router.get("/users/:id", Authorization, authentication, getUserDetails);
 
 export default router;
