@@ -66,19 +66,19 @@ type HttpStatusCode =
   | 510
   | 511;
 
-const response = (
-{  res,
+const response = ({
+  res,
   code,
   message,
   status_text,
-  data}:{
-res:Response,
-  code:HttpStatusCode,
-  message:string,
-  status_text?:string,
-  data?:any,
-  }
-) => {
+  data,
+}: {
+  res: Response;
+  code: HttpStatusCode;
+  message: string;
+  status_text?: string;
+  data?: any;
+}) => {
   if (!res) throw new Error("Response not defined");
 
   const httpStatusText = {

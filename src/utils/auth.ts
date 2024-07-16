@@ -1,4 +1,3 @@
-
 import jwt from "jsonwebtoken";
 
 const generateAccessToken = (email: string): string => {
@@ -6,6 +5,4 @@ const generateAccessToken = (email: string): string => {
     expiresIn: process.env.JWT_EXPIRES_IN || "1d",
   });
 };
-export {
-    generateAccessToken
-}
+export { generateAccessToken };
